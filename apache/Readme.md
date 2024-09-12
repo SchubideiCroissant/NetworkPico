@@ -1,4 +1,4 @@
-# Projekt README
+# Apache Dateien
 
 Dieses Projekt umfasst eine einfache Webanwendung, die verwendet wird, um Sensordaten von einem Hauptprogramm zu empfangen und anzuzeigen. Die Webanwendung besteht aus drei Hauptkomponenten:
 
@@ -7,10 +7,6 @@ Dieses Projekt umfasst eine einfache Webanwendung, die verwendet wird, um Sensor
 2. **server.php**: Das PHP-Skript, das die POST-Daten vom Formular verarbeitet. Es speichert die empfangenen Daten in einer Datei und gibt eine Bestätigung auf der Webseite aus. Die Daten werden zusammen mit einem Zeitstempel gespeichert, um eine chronologische Aufzeichnung der Sensormessungen zu ermöglichen.
 
 3. **script.js**: Das JavaScript-Skript, das für die Interaktivität der Webseite verantwortlich ist. Es sendet die Formulardaten an das PHP-Skript und lädt die gespeicherten Daten regelmäßig neu, um sie auf der Webseite anzuzeigen.
-
-## Zweck der Webseite
-
-Die Webseite dient dazu, Sensordaten vom Hauptprogramm zu verarbeiten und anzuzeigen. Die Daten werden in Echtzeit erfasst und auf der Seite angezeigt, um eine einfache Überwachung und Analyse der Sensorwerte zu ermöglichen.
 
 ## Verwendung/Anforderungen
 - Ein Webserver mit PHP-Unterstützung (z.B. XAMPP, Apache).
