@@ -3,16 +3,21 @@
 #include "lwip/pbuf.h"
 #include "lwip/tcp.h"
 #include <stdio.h>
+#include "http_post.h"
 
 #define WIFI_SSID "MagentaWLAN-7VJV"
 #define WIFI_PASSWORD "34076848352324396738"
 #define SERVER_IP "192.168.2.172" // IP-Adresse des Apache-Servers
 #define SERVER_PORT 80 // Standardport für HTTP
+#ifndef DATA_STRUCTURES_H  // Prüft, ob DATA_STRUCTURES_H noch nicht definiert ist
+#define DATA_STRUCTURES_H  // Definiert DATA_STRUCTURES_H, um Mehrfachinklusion zu verhindern
 
 typedef struct {
     float temperature;
     float humidity;
 } temp_humidity_data_t;
+
+#endif // DATA_STRUCTURES_H
 
 // Callback-Funktion zum Empfang der Serverantwort
 static err_t on_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) {
@@ -45,7 +50,6 @@ static err_t on_connected(void *arg, struct tcp_pcb *pcb, err_t err) {
 
     // HTTP POST-Daten vorbereiten
     char body[200];
-    //snprintf(body, sizeof(body), "temperature=12&humidity=18");
     //printf("Body content: %s\n", body);  // Debug-Ausgabe
     snprintf(body, sizeof(body), "temperature=%.2f&humidity=%.2f", data->temperature, data->humidity);
 
@@ -86,8 +90,7 @@ void send_data_to_server(float temperature, float humidity) {
         printf("Failed to create PCB\n");
         return;
     }
-    printf("##### Temperature: %.2f °C, Humidity: %.2f%%\n #### \n", temperature, humidity);
-
+ 
     ip_addr_t server_addr;
     ipaddr_aton(SERVER_IP, &server_addr);
 
@@ -100,7 +103,6 @@ void send_data_to_server(float temperature, float humidity) {
     }
     data->temperature = temperature;
     data->humidity = humidity;
-
 
     // Verbindung herstellen und Daten an on_connected übergeben
     err_t err = tcp_connect(pcb, &server_addr, SERVER_PORT, on_connected);

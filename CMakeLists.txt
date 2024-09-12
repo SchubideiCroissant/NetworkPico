@@ -30,7 +30,7 @@ project(NetworkPico C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-add_executable(NetworkPico test.cpp )
+add_executable(NetworkPico http_post.cpp )
 
 
 pico_set_program_name(NetworkPico "NetworkPico")
